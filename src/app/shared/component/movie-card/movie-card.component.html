@@ -1,0 +1,55 @@
+<header class="p-4 mb-4 header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <a href="index.html" class="logo">
+          <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+          alt="TMDB logo" title="TMDB logo">
+        </a>
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let movie of movieData">
+     <div class="card">
+      <figure class="moviecard">
+        <img src="https://image.tmdb.org/t/p/w1280/{{movie.poster_path}}"
+        [alt] = "movie.title || movie.original_title"
+        [title] = "movie.title || movie.original_title"/>
+
+        <figcaption>
+          <div class="titleinfo text-white p-2">
+            <div class="row">
+              <div class="col-md-10">
+              <h4>{{movie.title || movie.original_title}}</h4>
+              </div>
+              <div class="col-md-2 align-self-center p-0">
+              <span
+              [ngClass]="{
+                'bg-success':movie.vote_average >= 7,
+                'bg-warning' :movie.vote_average >=5 && movie.vote_average <7,
+                'bg-danger':movie.vote_average < 5
+              }"
+              class="rating p-2">{{movie.vote_average}}</span>
+              </div>
+            </div>
+          </div>
+
+
+
+        <div class="overview">
+        <h5>{{movie.title}}</h5>
+        <p>{{movie.overview}}</p>
+        </div>
+      </figcaption>
+      </figure>
+     </div>
+    </div>
+  </div>
+</div>
